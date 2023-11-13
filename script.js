@@ -1,18 +1,19 @@
 const ox = document.querySelector('button[type="button"]');
 const apiUrl = "https://api.adviceslip.com/advice";
 
-async function checkWeather() {
-  const response = await fetch(apiUrl);
-  if (response.status == 404) {
+async function api() {
+  const response = await fetch(apiUrl + "?" + Math.floor(Math.random() * 10));
+  if (response.status != 200) {
     document.querySelector("#err").style.display = "block";
+    document.querySelector("span").innerHTML = `${response.status}`;
   } else {
-    var data = await response.json();
-    document.querySelector("#asdf").innerHTML = `Advice: ${data.slip.advice}`;
-    document.querySelector("#adv").innerHTML = `${data.slip.id}`;
     document.querySelector("#err").style.display = "none";
+    var data = await response.json();
+    document.querySelector("#asdf").innerHTML = `${data.slip.advice}`;
+    document.querySelector("#adv").innerHTML = `${data.slip.id}`;
   }
 }
 
 ox.addEventListener("click", () => {
-  checkWeather();
+  api();
 });
