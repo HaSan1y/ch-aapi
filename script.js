@@ -9,8 +9,8 @@ async function api() {
   } else {
     document.querySelector("#err").style.display = "none";
     var data = await response.json();
-    document.querySelector("#asdf").innerHTML = `${data.slip.advice}`;
-    document.querySelector("#adv").innerHTML = `${data.slip.id}`;
+    asdf.innerHTML = `${data.slip.advice}`;
+    adv.innerHTML = `${data.slip.id}`;
   }
 }
 
